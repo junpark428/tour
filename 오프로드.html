@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>오프로드 | Miki Tours Guam</title>
+  <style>
+    /* 기본 리셋 */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    /* === 헤더 === */
+        header{background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;}
+    header .container{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+    a.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+    a.logo img{height:40px;}
+    a.logo span{font-size:1.5rem;font-weight:bold;color:#004080;}
+    nav ul{display:flex;gap:20px;list-style:none;}
+    nav a{padding:5px 0;color:#333;text-decoration:none;font-weight:500;}
+    nav a:hover, nav a.active{color:#004080;text-decoration:underline;}
+
+    /* === 본문 레이아웃 === */
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+     .product-detail {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      margin-bottom: 60px;
+    }
+    .preview img {
+      /* 사진은 그대로 두세요 */
+      width: 480px;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+    .right {
+      flex: 1;
+    }
+
+    /* === 옵션 그룹 === */
+    .options-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .option {
+      display: flex;
+      flex-direction: column;
+    }
+    .option label {
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #333;
+    }
+/* 기존 스타일 중 input/select 부분을 이렇게 수정 */
+.option input,
+.option select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 350px;   /* 최대 너비 설정 */
+  box-sizing: border-box;
+}
+
+
+    /* === 인원 & 총금액 === */
+    .guest-summary {
+      grid-column: 1 / -1; /* 2열 전체를 차지 */
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .guest-summary .guest-control {
+      display: flex;
+      align-items: center;
+    }
+    .guest-control button {
+      width: 30px; height: 30px;
+      background: #00aaff; color:#fff;
+      border:none; border-radius:4px;
+      font-size:18px; cursor:pointer;
+    }
+    .guest-control input {
+      width: 50px; text-align:center;
+      border:1px solid #ccc; border-radius:4px;
+      margin: 0 6px;
+    }
+    .guest-summary .summary {
+      margin-left: auto;
+      font-size: 18px;
+    }
+    .guest-summary .summary strong {
+      color: #00aaff;
+      font-size: 20px;
+    }
+
+    /* === 예약 버튼 === */
+    #reserveBtn {
+      grid-column: 1 / -1;
+      margin-top: 20px;
+      padding: 14px;
+      width: 100%;
+      background: #00aaff;
+      color:#fff;
+      border:none;
+      border-radius:4px;
+      font-size:16px;
+      cursor:pointer;
+    }
+
+    /* === 상세 정보 === */
+    .details h2 {
+      margin-bottom: 16px;
+      font-size: 20px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 8px;
+    }
+    .details img {
+      width: 80%;
+      margin: 20px auto 0;
+      display: block;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <!-- 공통 헤더 -->
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="logo.jpg" alt="로고"><span>미키투어</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#banner" class="active">홈</a></li>
+          <li><a href="#tours">투어</a></li>
+          <li><a href="#contact">문의</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<body>
+  <div class="container">
+    <div class="product-detail">
+      <!-- ① 사진 -->
+      <div class="preview">
+        <img src="023.jpg" alt="오프로드">
+      </div>
+      <!-- ② 옵션 폼 -->
+      <div class="right">
+        <div class="options-group">
+          <div class="option">
+            <label>예약자 성명</label>
+            <input type="text" id="resName" placeholder="홍길동">
+          </div>
+          <div class="option">
+            <label>1부/2부 선택</label>
+            <select id="partSelect">
+              <option>1부</option>
+              <option>2부</option>
+            </select>
+          </div>
+          <div class="option">
+            <label>오프로드 날짜/픽업 호텔</label>
+            <input type="text" id="pickup" placeholder="2025-07-01 / 호텔명">
+          </div>
+          <div class="option">
+            <label>성인/아동 선택</label>
+            <select id="ageSelect">
+              <option>성인</option>
+              <option>아동</option>
+            </select>
+          </div>
+          <!-- 인원 & 총금액 (2열 전체 차지) -->
+          <div class="guest-summary">
+            <div class="guest-control">
+              <button id="minus">－</button>
+              <input type="number" id="tourGuests" min="1" value="1">
+              <button id="plus">＋</button>
+            </div>
+            <div class="summary">
+              총금액: <strong>$<span id="total">30</span></strong>
+            </div>
+          </div>
+          <!-- 예약 버튼 (2열 전체 차지) -->
+          <button id="reserveBtn">오프로드 예약하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 상세 정보 -->
+    <div class="details">
+      <h2>상세 정보</h2>
+      <img src="트래킹상세.jpg" alt="오프로드 상세 정보">
+    </div>
+  </div>
+
+  <script>
+    const pricePer = 30;
+    const guests = document.getElementById('tourGuests');
+    const totalEl = document.getElementById('total');
+
+    document.getElementById('plus').onclick = () => {
+      guests.value = +guests.value + 1;
+      totalEl.textContent = guests.value * pricePer;
+    };
+    document.getElementById('minus').onclick = () => {
+      if (guests.value > 1) {
+        guests.value = +guests.value - 1;
+        totalEl.textContent = guests.value * pricePer;
+      }
+    };
+    document.getElementById('reserveBtn').onclick = () => {
+      const name = document.getElementById('resName').value.trim();
+      const info = document.getElementById('pickup').value.trim();
+      if (!name) return alert('예약자 성명을 입력해주세요.');
+      if (!info) return alert('날짜/픽업 호텔을 입력해주세요.');
+      alert(`예약 완료!\n예약자: ${name}\n${info}\n인원: ${guests.value}명\n총금액: $${totalEl.textContent}`);
+    };
+  </script>
+</body>
+</html>

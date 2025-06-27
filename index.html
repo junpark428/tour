@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miki Group</title>
+  <style>
+    /* reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Noto Sans KR', sans-serif; color:#333; background:#f9f9f9; }
+    a { text-decoration:none; color:inherit; }
+
+    /* container */
+    .container { width:90%; max-width:1200px; margin:0 auto; }
+
+    /* header */
+    header { background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:sticky; top:0; z-index:100; }
+    header .container { display:flex; justify-content:space-between; align-items:center; padding:16px 0; }
+    .logo { display:flex; align-items:center; }
+    .logo img { height:40px; }
+    .logo span { margin-left:8px; font-size:1.5rem; font-weight:bold; color:#004080; }
+    nav ul { list-style:none; display:flex; gap:24px; }
+    nav a { color:#333; font-weight:500; padding-bottom:4px; }
+    nav a.active, nav a:hover { color:#004080; border-bottom:2px solid #004080; }
+
+    /* slider */
+    #slider { position:relative; overflow:hidden; margin:24px 0; height:600px; border-radius:8px; }
+    .slides { display:flex; height:100%; transition:transform .5s ease; }
+    .slides img { flex-shrink:0; width:100%; height:100%; object-fit:cover; }
+    .arrow {
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(0,64,128,.7); color:#fff; border:none;
+      width:36px; height:36px; border-radius:50%; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+    }
+    #prev { left:16px; } #next { right:16px; }
+
+    /* services */
+    #services { background:#004080; padding:40px 0; border-radius:8px; }
+    #services .container { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; }
+    .service-card {
+      background:#ffd400; color:#003366;
+      width:160px; height:100px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; font-weight:bold;
+      border-radius:8px; cursor:pointer;
+      transition:transform .2s, box-shadow .2s;
+    }
+    .service-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* details 섹션 */
+    #details { padding:40px 0; }
+    .detail-block {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      margin-bottom:80px;
+    }
+    /* 이미지 컨테이너 */
+    .detail-img {
+      width:100%; max-width:800px;
+      aspect-ratio:4/3; overflow:hidden;
+      border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);
+      margin:0 auto;
+    }
+    .detail-img img {
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+    /* 설명 박스 */
+    .detail-desc {
+      background:#fff; padding:20px;
+      border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      display:flex; flex-direction:column;
+      justify-content:center;
+    }
+    .detail-desc h2 {
+      color:#004080; margin-bottom:12px;
+    }
+    .detail-desc p {
+      margin-bottom:16px; line-height:1.6;
+    }
+    /* 바로 확인 버튼 */
+    .btn-detail {
+      align-self:flex-start;
+      background:#004080; color:#fff;
+      padding:8px 16px; border-radius:4px;
+      font-size:0.9rem; transition:background .2s;
+    }
+    .btn-detail:hover {
+      background:#003366;
+    }
+
+    /* footer */
+    footer { text-align:center; padding:20px 0; color:#666; font-size:.9rem; }
+  </style>
+</head>
+<body>
+
+  <!-- header -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="logo.jpg" alt="Miki Logo">
+        <span>미키그룹</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">홈</a></li>
+          <li><a href="tour.html">투어</a></li>
+          <li><a href="contact.html">문의</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- slider -->
+  <section id="slider">
+    <div class="slides">
+      <img src="banner1.jpg" alt="Banner 1">
+      <img src="banner2.jpg" alt="Banner 2">
+      <img src="banner3.jpg" alt="Banner 3">
+      <img src="banner4.jpg" alt="Banner 4">
+      <img src="banner5.jpg" alt="Banner 5">
+    </div>
+    <button id="prev" class="arrow">&#10094;</button>
+    <button id="next" class="arrow">&#10095;</button>
+  </section>
+
+  <!-- services -->
+  <section id="services">
+    <div class="container">
+      <a href="tour.html"      class="service-card">미키투어</a>
+      <a href="taxi.html"      class="service-card">미키택시</a>
+      <a href="tagada.html"    class="service-card">타카다</a>
+      <a href="limousine.html" class="service-card">리무진</a>
+      <a href="insurance.html" class="service-card">보험</a>
+    </div>
+  </section>
+
+  <!-- details -->
+  <section id="details">
+    <div class="container">
+
+      <!-- MIKI 투어 -->
+      <div class="detail-block">
+        <div class="detail-img">
+          <img src="miki-tour.jpg" alt="MIKI 투어 이미지">
+        </div>
+        <div class="detail-desc">
+          <h2>MIKI 투어 소개</h2>
+          <p>
+            MIKI 투어는 괌 전역을 아우르는 대표 투어 서비스입니다.
+            전문 가이드와 함께 도심 명소부터 숨겨진 비경까지
+            안전하고 편안하게 안내해 드립니다. 맞춤형 코스를 제공합니다.
+          </p>
+          <a href="tour.html" class="btn-detail">바로 확인하러 가기</a>
+        </div>
+      </div>
+
+      <!-- MIKI 택시 -->
+      <div class="detail-block">
+        <div class="detail-img">
+          <img src="miki-taxi.jpg" alt="MIKI 택시 이미지">
+        </div>
+        <div class="detail-desc">
+          <h2>MIKI 택시 서비스</h2>
+          <p>
+            공항 픽업부터 시내·외 프라이빗 이동까지 24시간 운영되는 MIKI 택시.
+            차량 호출 앱으로 빠르고 안전한 이동을 보장합니다.
+          </p>
+          <a href="taxi.html" class="btn-detail">바로 확인하러 가기</a>
+        </div>
+      </div>
+
+      <!-- 타카다 놀이동산 -->
+      <div class="detail-block">
+        <div class="detail-img">
+          <img src="tagada-park.jpg" alt="타카다 놀이동산 이미지">
+        </div>
+        <div class="detail-desc">
+          <h2>타카다 놀이동산</h2>
+          <p>
+            온 가족이 즐길 수 있는 타카다 파크.
+            롤러코스터, 대관람차, 회전목마 등 다채로운 어트랙션이 준비되어 있습니다.
+          </p>
+          <a href="tagada.html" class="btn-detail">바로 확인하러 가기</a>
+        </div>
+      </div>
+
+      <!-- 리무진 렌탈 -->
+      <div class="detail-block">
+        <div class="detail-img">
+          <img src="limousine.jpg" alt="리무진 이미지">
+        </div>
+        <div class="detail-desc">
+          <h2>리무진 렌탈 서비스</h2>
+          <p>
+            VIP 고객을 위한 럭셔리 리무진.
+            비즈니스 미팅, 웨딩, 특별 이벤트에 최적화된 서비스입니다.
+          </p>
+          <a href="limousine.html" class="btn-detail">바로 확인하러 가기</a>
+        </div>
+      </div>
+
+      <!-- 여행 보험 -->
+      <div class="detail-block">
+        <div class="detail-img">
+          <img src="insurance.jpg" alt="여행 보험 이미지">
+        </div>
+        <div class="detail-desc">
+          <h2>여행 보험</h2>
+          <p>
+            사고, 의료 지원, 소지품 분실까지 포괄 보장하는 MIKI 여행 보험.
+            합리적인 가격으로 즉시 보호가 시작됩니다.
+          </p>
+          <a href="insurance.html" class="btn-detail">바로 확인하러 가기</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer>
+    &copy; 2025 Miki Group. All rights reserved.
+  </footer>
+
+  <script>
+    // slider 기능
+    const slides = document.querySelector('.slides');
+    const imgs   = slides.querySelectorAll('img');
+    const prev   = document.getElementById('prev');
+    const next   = document.getElementById('next');
+    let idx = 0, total = imgs.length;
+    function show(i) {
+      if (i < 0) i = total - 1;
+      if (i >= total) i = 0;
+      slides.style.transform = `translateX(-${i * 100}%)`;
+      idx = i;
+    }
+    prev.addEventListener('click', () => show(idx - 1));
+    next.addEventListener('click', () => show(idx + 1));
+    setInterval(() => show(idx + 1), 5000);
+  </script>
+
+</body>
+</html>

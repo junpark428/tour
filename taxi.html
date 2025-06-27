@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MIKI 택시 예약 | Miki Group</title>
+  <style>
+    /* reset */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:Arial,sans-serif;color:#333;background:#fdfdfd;}
+    a{text-decoration:none;color:inherit;}
+
+    .container{width:90%;max-width:1200px;margin:0 auto;}
+
+    /* header */
+    header{background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;}
+    header .container{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+    .logo{display:flex;align-items:center;gap:8px;}
+    .logo img{height:40px;}
+    .logo span{font-size:1.5rem;font-weight:bold;color:#004080;}
+    nav ul{display:flex;gap:20px;list-style:none;}
+    nav a{padding:5px 0;color:#333;font-weight:500;}
+    nav a.active,nav a:hover{color:#004080;border-bottom:2px solid #004080;}
+
+    /* banner */
+    #banner{margin:24px 0;border-radius:8px;overflow:hidden;}
+    #banner img{width:100%;height:600px;object-fit:cover;}
+
+    /* tour 페이지와 동일한 calculator 스타일 */
+    #calculator {
+      background: #4C7CBF;
+      padding: 40px 0;
+      color: #fff;
+    }
+    #calculator .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    #calculator label {
+      min-width: 80px;
+      font-weight: 500;
+    }
+    #calculator select,
+    #calculator input[type=date],
+    #calculator input[type=number] {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    #calculator button#calcBtn {
+      padding: 10px 20px;
+      background: #ff851b;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    #calculator button#calcBtn:hover {
+      background: #e67e22;
+    }
+    #price-display {
+      font-size: 1.2rem;
+      color: #ffdc00;
+      font-weight: bold;
+    }
+    #book-btn {
+      padding: 10px 20px;
+      background: #00aaff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-left: 16px;
+    }
+    #book-btn:hover {
+      background: #008ecc;
+    }
+
+    /* Kakao */
+    #kakao-banner{background:#FEE500;padding:20px 0;}
+    #kakao-banner .container{display:flex;justify-content:center;}
+    #kakao-banner a{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;background:#FEE500;color:#3C1E1E;border-radius:8px;font-weight:bold;}
+    #kakao-banner img{height:40px;}
+
+    /* footer */
+    footer{text-align:center;padding:20px 0;color:#666;background:#fff;border-top:1px solid #eee;}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="logo.jpg" alt="로고"><span>미키투어</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">홈</a></li>
+          <li><a href="taxi.html" class="active">택시</a></li>
+          <li><a href="contact.html">문의</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section id="banner">
+    <!-- 여기를 바꾼 파일명으로 맞춰주세요 -->
+    <img src="banner_taxi.jpg" alt="MIKI 택시 배너">
+  </section>
+
+  <!-- Calculator -->
+  <section id="calculator">
+    <div class="container">
+      <div class="controls">
+        <label for="from">출발지</label>
+        <select id="from">
+          <option>호텔 닛코 괌</option>
+          <option>더 츠바키 타워</option>
+          <option>롯데 호텔 괌</option>
+          <!-- 나머지 호텔들… -->
+        </select>
+
+        <label for="to">도착지</label>
+        <select id="to">
+          <option>K마트</option>
+          <option>마이크로네시아몰 & 메이시스</option>
+          <option>돈 돈 돈키</option>
+          <option>GPO</option>
+          <option>차모로 야시장(왕복)</option>
+          <option>사랑의 절벽(왕복)</option>
+          <option>호텔→공항(편도)</option>
+          <option>공항→호텔(편도)</option>
+        </select>
+
+        <label for="date">날짜</label>
+        <input type="date" id="date">
+
+        <label for="qty">인원</label>
+        <input type="number" id="qty" min="1" value="1">
+
+        <button id="calcBtn">요금 계산</button>
+        <span id="price-display">총 요금: $0</span>
+        <button id="book-btn">바로 예약하기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kakao -->
+  <section id="kakao-banner">
+    <div class="container">
+      <a href="https://pf.kakao.com/_CFXVxj" target="_blank" rel="noopener">
+        <img src="kakao.jpg" alt="카카오톡 아이콘">
+        헬로미키 카카오톡 채널 문의
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>&copy; 2025 Miki Tours Guam</footer>
+
+  <script>
+const rates = {
+  "호텔 닛코 괌": {
+    "K마트":              15,
+    "마이크로네시아몰 & 메이시스": 13,
+    "돈 돈 돈키":         23,
+    "GPO":                19,
+    "차모로 야시장(왕복)":   46,
+    "사랑의 절벽(왕복)":    42,
+    "호텔→공항(편도)":      26,
+    "공항→호텔(편도)":      30
+  },
+  "더 츠바키 타워": {
+    "K마트":              15,
+    "마이크로네시아몰 & 메이시스": 13,
+    "돈 돈 돈키":         23,
+    "GPO":                19,
+    "차모로 야시장(왕복)":   46,
+    "사랑의 절벽(왕복)":    42,
+    "호텔→공항(편도)":      26,
+    "공항→호텔(편도)":      30
+  },
+  "롯데 호텔 괌": {
+    "K마트":              14,
+    "마이크로네시아몰 & 메이시스": 18,
+    "돈 돈 돈키":         22,
+    "GPO":                18,
+    "차모로 야시장(왕복)":   44,
+    "사랑의 절벽(왕복)":    41,
+    "호텔→공항(편도)":      23,
+    "공항→호텔(편도)":      28
+  },
+  // … 나머지 호텔들도 같은 방식으로 채워주세요 …
+};
+    document.getElementById('calcBtn').onclick = () => {
+      const from = document.getElementById('from').value;
+      const to   = document.getElementById('to').value;
+      let qty    = parseInt(document.getElementById('qty').value)||1;
+      const disp = document.getElementById('price-display');
+
+      if(!rates[from] || rates[from][to]==null) {
+        disp.textContent = '요금 정보를 찾을 수 없습니다.';
+        return;
+      }
+
+      const base = rates[from][to];
+const total = qty <= 4
+  ? base
+  : base + (qty - 4) * 10;
+
+    document.getElementById('book-btn').onclick = () => {
+      window.open('https://pf.kakao.com/_CFXVxj','_blank');
+    };
+  </script>
+</body>
+</html>
